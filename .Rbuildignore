@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.git$
+\.DS_Store
+README.md
+\.gitignore
+Read-and-delete-me

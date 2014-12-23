@@ -1,0 +1,106 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Using simMSnSet}
+%\VignetteKeywords{bioinformatics, proteomics, mass spectrometry}
+
+\documentclass[11pt]{article}
+
+<<style, eval=TRUE, echo=FALSE, results='asis', warning=FALSE, message=FALSE>>=
+BiocStyle::latex() #use.unsrturl=FALSE
+library("simMSnSet")
+@
+
+
+
+\title{Simulating Quantitative LC-MS Datasets as MSnSet}
+\author{}
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Motivation}
+Quality control and performance evaluation is an inherent part of the 
+data analysis.  It spans from unit testing of the software tools up to 
+data analysis pipeline evaluation against the samples with known spike-ins.
+The middleground, that arguably remains underappreciated in 'omic data 
+analysis, is the testing and evaluation the algorithms against the 
+\emph{simulated} data.  Therefore, we decided to develop a library for 
+simulating quantitative proteomics data at the level of \Rclass{MSnSet} object
+that would allow to test and evaluate performance of such data processing steps
+as
+\begin{itemize}
+    \item normalization
+    \item imputation of the missing values
+    \item inference of protein relative
+    \item abundances from peptide data (a.k.a. peptide-to-protein roll-up)
+    \item discovery of differentially abundant proteins or sample classification
+    \item evaluating robustness of the algorithms towards outlying measurements,
+            peptide/protein identifications and samples
+\end{itemize}
+Note, this package solely centers around \Rclass{MSnSet} class.  
+The software tools for simulating upstream LC-MS data and evaluation the 
+corresponding algorithms is out the scope of this package.
+
+\section{Scope}
+Simulation accounts (or to say more accurately will be accounting) for the following issues with the real-world data:
+\begin{itemize}
+    \item false identified peptides
+    \item effect of number of peptides per protein
+    \item outlying measurements
+    \item outlying (mis-assigned samples)
+    \item missing values
+    \item proportion of proteins differentially abundant 
+            between phenotypic groups
+    \item effect of loading of different sample amounts
+\end{itemize}
+
+
+\section{Proteins}
+Brief info about \Rclass{Proteins} class.  Let's pretent we have measured
+30 proteins
+<<proteins>>=
+pr <- Proteins(nProt = 30)
+show(pr)
+pr <- simulate(pr, seed=0)
+show(pr)
+@
+Simulated number of peptides per protein (\Rcode{@pepCounts} slot).
+<<proteins2, out.width='.5\\textwidth', fig.width=4, fig.height=4, fig.align='center'>>=
+library("ggplot2")
+ggplot(as.data.frame(table(pr@pepCounts)), aes(x=Var1, y=Freq)) +
+    geom_bar(stat="identity", width=0.2) + 
+    xlab("peptides per protein") +
+    ylab("count")
+@
+
+
+\section{Phenotypes}
+Brief info about \Rclass{Phenotypes} class.
+<<phenotypes>>=
+ph <- Phenotypes(original = rep(c('A','B'), each = 10))
+show(ph)
+ph <- simulate(ph, seed=0)
+show(ph)
+@
+
+\section{Experiment}
+Brief info about \Rclass{Experiment} class.
+<<experiment, dev='png', out.width='1.0\\textwidth'>>=
+ex <- Experiment(pr, ph)
+show(ex)
+ex <- simulate(ex, seed=0)
+show(ex)
+image(ex)
+@
+
+Finally, converting to \Rclass{MSnSet}.
+<<msnset>>=
+msnset <- as(ex,"MSnSet")
+validObject(msnset)
+show(msnset)
+@
+
+
+\end{document}
