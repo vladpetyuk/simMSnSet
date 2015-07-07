@@ -1,0 +1,10 @@
+* To create a plot for assessing roll-ups
+    signature("MSnSet", "MSnSet", "character")
+    the first object with peptides, second rolled-up to protein level,
+    character tells what protein to look at
+* Is there a way to document setAs method such that it is under class Rd file?
+* Move constructors under methods
+* Provide parameter for moderating the outliers. Otherwise they can suppress the
+    abundance range.
+* Came up with iTRAQ/TMT simulation.  Is there anything fundamentally different
+    from other isotope labeling.

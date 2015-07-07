@@ -15,7 +15,13 @@ Imports:
     ggplot2,
     MSnbase
 Collate:
+    'AllClasses.R'
     'AllGenerics.R'
+    'as-methods.R'
     'proteins.R'
     'phenotypes.R'
     'experiment.R'
+    'image-methods.R'
+    'plot-methods.R'
+    'show-methods.R'
+    'simulate-methods.R'

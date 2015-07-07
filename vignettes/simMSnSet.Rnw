@@ -79,7 +79,7 @@ ggplot(as.data.frame(table(pr@pepCounts)), aes(x=Var1, y=Freq)) +
 \section{Phenotypes}
 Brief info about \Rclass{Phenotypes} class.
 <<phenotypes>>=
-ph <- Phenotypes(original = rep(c('A','B'), each = 10))
+ph <- Phenotypes(originalPhenotypes = rep(c('A','B'), each = 10))
 show(ph)
 ph <- simulate(ph, seed=0)
 show(ph)
