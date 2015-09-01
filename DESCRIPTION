@@ -1,12 +1,20 @@
 Package: simMSnSet
 Type: Package
 Title: Simulation of MSnSet Objects
-Version: 0.0.1
-Date: 2014-12-23
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: Undecided between Beerware and WTFPL
+Version: 0.0.2
+Date: 2015-08-31
+Author: Vlad Petyuk
+Maintainer: Vlad Petyuk <petyuk@gmail.com>
+Description: Utility to simulate quantitative proteomics data. 
+             Note, the simulations will be as realistic - as realistic the
+             input parameters. Inference of parameters for a number of 
+             distributions describing quantitative proteomics data is
+             in the plans. The set of current controling distributions
+             allows to control for 1) sample bias (e.g. due to pipetting
+             error), 2) missing values, 3) number of peptides per protein,
+             4) outlying samples, 5) outlying peptide identifications, 
+             6) outlying measurements and 7) sample group effects.
+License: Artistic-2.0
 VignetteBuilder: knitr
 Suggests:
     knitr
