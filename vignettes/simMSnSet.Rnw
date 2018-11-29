@@ -1,4 +1,4 @@
-%\VignetteEngine{knitr::knitr}
+%\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{Using simMSnSet}
 %\VignetteKeywords{bioinformatics, proteomics, mass spectrometry}
 %\VignettePackage{simMSnSet}
