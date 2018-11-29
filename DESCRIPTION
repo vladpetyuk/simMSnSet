@@ -16,6 +16,7 @@ Description: Utility to simulate quantitative proteomics data.
              6) outlying measurements and 7) sample group effects.
 License: Artistic-2.0
 VignetteBuilder: knitr
+biocViews: Proteomics, MassSpectrometry
 Suggests:
     knitr
 Imports:
